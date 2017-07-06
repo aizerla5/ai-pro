@@ -1,0 +1,9 @@
+######################
+## EPiServer Files
+######################
+*License.config
+/data/runtime
+/data/security
+/data/backup
+/thinkphp
+/vendor

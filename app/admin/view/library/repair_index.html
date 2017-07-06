@@ -1,0 +1,41 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <form id="alldel" name="alldel" method="post" action="{:url('admin/Library/repair_delete')}">
+                    <input name="p" id="p" value="{:input('p',1)}" type="hidden"/>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dynamic-table">
+                            <thead>
+                            <tr>
+                                <th class="hidden-xs center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace" id='chkAll' onclick='CheckAll(this.form)' value="全选"/>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </th>
+                                <th class="hidden-xs">排序</th>
+                                <th class="hidden-xs">ID</th>
+                                <th>资料名称</th>
+                                <th>添加时间</th>
+                                <th>访问次数</th>
+                                <th>标签</th>
+                                <th style="border-right: 1px solid #ccc;">操作</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="ajax-data">
+                            {include file="library/ajax_repair_index"/}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!-- /.page-content -->
+{/block}
+{block name="scripts"}
+{/block}

@@ -1,0 +1,60 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <!--主题-->
+    <div class="page-header">
+        <h1>
+            您当前操作
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                直播设置
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal ajaxForm2" name="form0" method="post" action="{:url('admin/School/videoSave')}">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="content">视频流代码： </label>
+                    <div class="col-sm-9">
+                        <textarea name="content" rows="15" cols="80" title="" id="content">{if condition="!empty($config['content'])"}{$config['content']}{/if}</textarea>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="price">直播收费金额： </label>
+                    <div class="col-sm-9">
+                        <input type="number" title="" id="price" name="price" value="{$config['price']}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="coupon"> 优惠券优惠： </label>
+                    <div class="col-sm-9">
+                        <input type="number" title="" id="coupon" name="coupon" value="{$config['coupon']}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button class="btn btn-info" type="submit"><i class="ace-icon fa fa-check bigger-110"></i>保存</button>
+                        <button class="btn" type="reset"><i class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div><!-- /.page-content -->
+{/block}
+{block name="scripts"}
+<script>
+    (function ($) {
+        $(function () {
+        });
+    })(jQuery);
+</script>
+{/block}

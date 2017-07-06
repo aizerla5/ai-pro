@@ -1,0 +1,144 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <!--主题-->
+    <div class="page-header">
+        <h1>
+            您当前操作
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                {if condition="$category"}
+                修改电路图厂商：{$category.title}
+                {else}
+                添加电路图厂商
+                {/if}
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal ajaxForm2" name="form0" method="post" action="{:url('admin/Library/catecircuit_save')}" enctype="multipart/form-data">
+                {if condition="$category"}
+                <input type="hidden" name="cate_id" value="{$category.cate_id}"/>
+                {/if}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="title">厂商名称： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" id="title" placeholder="必填：厂商名称" class="col-xs-10 col-sm-6" required value="{if condition='$category'}{$category.title}{/if}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="file0">LOGO上传： </label>
+                    <div class="col-sm-10">
+                        <a href="javascript: void(0);" class="file">
+                            <input type="file" name="pic" id="file0"/>
+                            选择上传文件
+                        </a>
+                        {if condition="$category"}
+                        <span class="lbl"><img src="{$category.cate_pic|get_imgurl}" height="70" id="img0"></span>
+                        <a href="javascript: void(0);" onclick="return backpic('{$category.cate_pic|get_imgurl}');" title="还原修改前的图片" class="file">撤销修改</a>
+                        {else}
+                        <span class="lbl"><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img0"></span>
+                        <a href="javascript: void(0);" onClick="return backpic('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片" class="file">撤销上传</a>
+                        {/if}
+                        <span class="lbl"><br/></span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="file0">列表页LOGO上传： </label>
+                    <div class="col-sm-10">
+                        <a href="javascript: void(0);" class="file">
+                            <input type="file" name="file1" id="file1"/>
+                            选择上传文件
+                        </a>
+                        {if condition="$category"}
+                        <span class="lbl"><img src="{$category.logo_pic|get_imgurl}" height="70" id="img1"></span>
+                        <a href="javascript: void(0);" onclick="return backpic1('{$category.logo_pic|get_imgurl}');" title="还原修改前的图片" class="file">撤销修改</a>
+                        {else}
+                        <span class="lbl"><img src="__PUBLIC__/img/no_img.jpg" height="70" id="img1"></span>
+                        <a href="javascript: void(0);" onClick="return backpic1('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片" class="file">撤销上传</a>
+                        {/if}
+                        <span class="lbl"><br/></span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-sorting"> 排序（从小到大）： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="sorting" value="{if condition='$category'}{$category.sorting}{else}1{/if}" class="col-xs-10 col-sm-1" id="form-sorting"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input class="ace ace-checkbox-2" name="continue" type="checkbox" value="1" title=""/>
+                        <span class="lbl"> 发布后继续</span>
+                        <button class="btn btn-info" type="submit"><i class="ace-icon fa fa-check bigger-110"></i>保存</button>
+                        <button class="btn" type="reset"><i class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {if condition="!empty($files)"}
+    <!-- 显示模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:80%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">操作已上传的多图</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <ul>
+                                        {volist name="$files" id="v"}
+                                        <div class="file-preview-frame" data-fileindex="0" id="id{$i}">
+                                            <img src="{$v|get_imgurl}" class="file-preview-image" style="width:auto; height:160px;">
+                                            <div class="file-thumbnail-footer">
+                                                <div class="file-actions">
+                                                    <div class="file-footer-buttons">
+                                                        <a class="red" href="javascript:;" onclick="return delall('{$i}','{$v}');" title="回收站">
+                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/volist}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">
+                        若想取消修改，请刷新当前页面
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    {/if}
+
+</div><!-- /.page-content -->
+{/block}
+{block name="scripts"}
+{/block}

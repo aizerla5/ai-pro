@@ -1,0 +1,183 @@
+{extend name="admin@public/base" /}
+{block name="styles"}
+<link href="__PUBLIC__/fi/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+{/block}
+{block name="main-content"}
+<div class="page-content">
+    <!--主题-->
+    <div class="page-header">
+        <h1>
+            您当前操作
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                {if condition="$repair"}
+                修改维修资料：{$repair.title}
+                {else}
+                添加维修资料
+                {/if}
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal ajaxForm2" name="form0" method="post" action="{:url('admin/Library/repair_save')}" enctype="multipart/form-data">
+                {if condition="$repair"}
+                <input type="hidden" name="circuit_id" value="{$repair.circuit_id}"/>
+                {/if}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="title">资料名称： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" id="title" placeholder="必填：资料名称" class="col-xs-10 col-sm-6" required value="{if condition='$repair'}{$repair.title}{/if}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-pid">所属厂商： </label>
+                    <div class="col-sm-6">
+                        <select class="form-control" name="parent" id="form-pid">
+                            <option value="">-- 请选择 --</option>
+                            {foreach name="categories" item="vo"}
+                            <option value="{$vo.cate_id}" {if condition="$repair && $repair['parent'] eq $vo.cate_id"}selected="selected" {else}{if condition="!empty($modPid) && $modPid eq $vo.cate_id" } selected="selected" {/if}{/if}>{$vo.title}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-water"> 是否加水印： </label>
+                    <div class="col-sm-10" style="padding-top:5px;">
+                        <input name="use_water" id="form-water" value="1" class="ace ace-switch ace-switch-4 btn-flat" type="checkbox"/>
+                        <span class="lbl">&nbsp;&nbsp;默认开启</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group" id="pic_list">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-files"> 图片集： </label>
+                    <div class="col-sm-10" style="padding-top: 5px;">
+                        <input id="form-files" name="pic_all[]" type="file" class="file-loading" multiple><br/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="my-editor">概述： </label>
+                    <div class="col-sm-9">
+                        <script src="__PUBLIC__/ueditor/ueditor.config.js" type="text/javascript"></script>
+                        <script src="__PUBLIC__/ueditor/ueditor.all.js" type="text/javascript"></script>
+                        <textarea name="bodytext" rows="10" style="width: 100%" id="my-editor">{if condition='$repair'}{$repair.bodytext}{/if}</textarea>
+                        <script type="text/javascript">
+                            var editor = new UE.ui.Editor();
+                            editor.render("my-editor");
+                        </script>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-tags"> 标签： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="tags" id="form-tags" placeholder="标签" class="col-xs-10 col-sm-6" value="{if condition='$repair'}{$repair.tags}{/if}"/>
+                        <span class="help-inline col-xs-12 col-sm-6">
+                            <span class="middle">如果多个请用，号分隔；</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-visitor"> 访问次数： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="visitor" id="form-visitor" placeholder="访问次数" class="col-xs-10 col-sm-6" value="{if condition='$repair'}{$repair.visitor}{/if}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-sorting"> 排序（从小到大）： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="sorting" value="{if condition='$repair'}{$repair.sorting}{else}1{/if}" class="col-xs-10 col-sm-1" id="form-sorting"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input class="ace ace-checkbox-2" name="continue" type="checkbox" value="1" title="" checked/>
+                        <span class="lbl"> 发布后继续</span>
+                        <button class="btn btn-info" type="submit"><i class="ace-icon fa fa-check bigger-110"></i>保存</button>
+                        <button class="btn" type="reset"><i class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div><!-- /.page-content -->
+{/block}
+{block name="scripts"}
+<script src="__PUBLIC__/fi/js/plugins/purify.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/fi/js/plugins/sortable.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/fi/js/fileinput.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/fi/js/locales/zh.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function(){
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            language: 'zh-CN'
+        });
+
+        $file = $('#form-files');
+        var fileParams = {
+            showUpload: false,
+            showCaption: false,
+            overwriteInitial: false,
+            initialPreviewAsData: true,
+            initialPreviewFileType: 'image',
+            maxFileCount: 50,
+            language: 'zh',
+            allowedFileExtensions: ['jpg', 'png', 'gif'],
+            uploadAsync: false
+        };
+
+        {if condition="$files"}
+        var initialPreview = [], initialPreviewConfig = [];
+        {volist name="$files" id="v" key="k"}
+        initialPreview.push('{$v.caption|get_imgurl}');
+        initialPreviewConfig.push({
+            caption: '{$v.caption}',
+            size: '{$v.size}',
+            url: '{:url("admin/Library/repair_image_del", ["id" => $repair.circuit_id])}',
+            key: '{$k}'
+        });
+        {/volist}
+        fileParams.initialPreview = initialPreview;
+        fileParams.initialPreviewConfig = initialPreviewConfig;
+        {/if}
+        $file.fileinput(fileParams);
+        {if condition="$files"}
+        $file.on('filesorted', function(e, params) {
+            if(params.oldIndex !== params.newIndex) {
+                $.post('{:url("admin/Library/repair_image_sort", ["id" => $repair.circuit_id])}', {obj: params.stack}, function () {
+
+                });
+            }
+        }).on("filepredelete", function(event, data) {
+            var abort = true;
+            if (confirm("您确定要删除这张图片吗？")) {
+                abort = false;
+            }
+            return abort;
+        }).on('filedeleted', function(event, key, jqXHR, data) {
+            if(parseInt(jqXHR.responseText) === 1) {
+                location.reload();
+            }
+        });
+        {/if}
+    });
+</script>
+{/block}

@@ -1,0 +1,44 @@
+{foreach name="categories" item="v"}
+	<tr>
+		<td class="hidden-xs" align="center">
+			<label class="pos-rel">
+				<input name='cate[]' id="navid" class="ace"  type='checkbox' value='{$v.cate_id}'>
+				<span class="lbl"></span>
+			</label>
+		</td>
+		<td class="hidden-xs center">
+			<input name="{$v.cate_id}" value="{$v.sorting|default=1}" class="list_order news_order" title=""/>
+		</td>
+		<td class="hidden-xs" align="center">{$v.cate_id}</td>
+		<td><a href="{:url('admin/Library/caterepair_edit',['id'=>$v['cate_id']])}" title="{$v.title}">{$v.title|subtext=50}</a></td>
+		<td>
+			<div class="hidden-sm hidden-xs action-buttons">
+				<a class="green" href="{:url('admin/Library/caterepair_edit',array('id'=>$v['cate_id']))}" data-toggle="tooltip" title="修改">
+					<i class="ace-icon fa fa-pencil bigger-130"></i>
+				</a>
+			</div>
+			<div class="hidden-md hidden-lg">
+				<div class="inline position-relative">
+					<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+						<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+					</button>
+					<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+						<li>
+							<a href="{:url('admin/Library/caterepair_edit', ['id'=>$v['cate_id']])}" class="tooltip-success" data-rel="tooltip" title="" data-original-title="修改">
+                                <span class="green">
+                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                </span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</td>
+	</tr>
+{/foreach}
+<tr>
+	<td align="left" class="hidden-xs center"><button id="btnsubmit" class="btn btn-white btn-yellow btn-sm hidden-xs">删</button> </td>
+	<td colspan="2" align="left"class="hidden-lg hidden-md hidden-sm">{$page}</td>
+	<td align="left" class="hidden-xs center"><button  id="btnorder" href="{:url('admin/Library/caterepair_sorting')}" class="btn btn-white btn-yellow btn-sm">排序</button></td>
+	<td colspan="7" align="right" class="hidden-xs">{$page}</td>
+</tr>

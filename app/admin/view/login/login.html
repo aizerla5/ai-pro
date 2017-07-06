@@ -1,0 +1,31 @@
+{extend name="layouts:login" /}
+{block name="content"}
+<div class="panel-body">
+    <div class="mar-ver pad-btm">
+        <h3 class="h4 mar-no">{:lang('Account Login')}</h3>
+        <p class="text-muted">{:lang('Sign In to your account')}</p>
+    </div>
+    <form action="{:url('admin/Login/run_login')}" class="ajaxForm-captcha">
+        <div class="form-group">
+            <input type="text" name="admin_username" class="form-control" placeholder="{:lang('Username')}" autofocus>
+        </div>
+        <div class="form-group">
+            <input type="password" name="admin_pwd" class="form-control" placeholder="{:lang('Password')}">
+        </div>
+        <div class="form-group">
+            <img class="captcha" id="captcha" src="{:url('admin/Login/verify')}" style="cursor: pointer;width:100%;border: 1px solid #d5d5d5;" title="{:lang('Click to refresh')}">
+            <input type="text" name="verify" class="form-control" id="verify" placeholder="{:lang('Captcha')}">
+        </div>
+        <div class="checkbox pad-btm text-left">
+            <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox" name="remember_me">
+            <label for="demo-form-checkbox">{:lang('Remember me')}</label>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">{:lang('Sign In')}</button>
+    </form>
+</div>
+
+<div class="pad-all">
+    <a href="pages-password-reminder.html" class="btn-link mar-rgt">Forgot password ?</a>
+    <a href="pages-register.html" class="btn-link mar-lft">Create a new account</a>
+</div>
+{/block}

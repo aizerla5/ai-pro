@@ -1,0 +1,86 @@
+{extend name="admin@public/base" /}
+{block name="main-content"}
+<div class="page-content">
+    <!--主题-->
+    <div class="page-header">
+        <h1>
+            您当前操作
+            <small>
+                <i class="ace-icon fa fa-angle-double-right"></i>
+                {if condition="$logo"}
+                修改故障码厂商：{$logo.title}
+                {else}
+                添加故障码厂商
+                {/if}
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal ajaxForm2" name="form0" method="post" action="{:url('admin/Library/logo_save')}" enctype="multipart/form-data">
+                {if condition="$logo"}
+                <input type="hidden" name="logo_id" value="{$logo.logo_id}"/>
+                {/if}
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="title"> 厂商名称： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="title" id="title" placeholder="必填：厂商名称" class="col-xs-10 col-sm-6" required value="{if condition='$logo'}{$logo.title}{/if}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="file0">图片上传： </label>
+                    <div class="col-sm-10">
+                        <a href="javascript: void(0);" class="file">
+                            <input type="file" name="pic" id="file0"/>
+                            选择上传文件
+                        </a>
+                        {if condition="$logo"}
+                        <span class="lbl">
+								<img src="{$logo.logo_pic|get_imgurl}" height="70" id="img0">
+                        </span>
+                        <a href="javascript: void(0);" onclick="return backpic('{$logo.logo_pic|get_imgurl}');" title="还原修改前的图片" class="file">撤销修改</a>
+                        {else}
+                        <span class="lbl">
+                                <img src="__PUBLIC__/img/no_img.jpg" height="70" id="img0">
+                        </span>
+                        <a href="javascript: void(0);" onClick="return backpic('__PUBLIC__/img/no_img.jpg');" title="还原修改前的图片" class="file">撤销上传</a>
+                        {/if}
+                        <span class="lbl">请上传png透明的厂商logo<br/></span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-remark"> 备注： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="remark" id="form-remark" placeholder="备注" class="col-xs-10 col-sm-6" value="{if condition='$logo'}{$logo.remark}{/if}"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label no-padding-right" for="form-sorting"> 排序（从小到大）： </label>
+                    <div class="col-sm-10">
+                        <input type="text" name="sorting" value="{if condition='$logo'}{$logo.sorting}{else}1{/if}" class="col-xs-10 col-sm-1" id="form-sorting"/>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <input class="ace ace-checkbox-2" name="continue" type="checkbox" value="1" title=""/>
+                        <span class="lbl"> 发布后继续</span>
+                        <button class="btn btn-info" type="submit"><i class="ace-icon fa fa-check bigger-110"></i>保存</button>
+                        <button class="btn" type="reset"><i class="ace-icon fa fa-undo bigger-110"></i>重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div><!-- /.page-content -->
+{/block}
+{block name="scripts"}
+{/block}

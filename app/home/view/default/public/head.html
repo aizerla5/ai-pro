@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>
+<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html> <!--<![endif]-->
+<head>
+    {include file="public:function"/}
+    {include file="public:config"/}
+    <meta charset="utf-8">
+    <title>{$site_title ? $site_title . ' - ' : '' . $site_name}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="{$meta_keywords|default=$site_seo_keywords}">
+    <meta name="description" content="{$meta_description|default=$site_seo_description}">
+
+    <link rel="stylesheet" href="{$theme}public/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="{$theme}public/css/fonts/font-awesome/css/font-awesome.css"> -->
+    <link rel="stylesheet" href="{$theme}public/css/fonts/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{$theme}public/css/animations.css" media="screen">
+    <link rel="stylesheet" href="{$theme}public/css/superfish.css" media="screen">
+    <link rel="stylesheet" href="{$theme}public/css/revolution-slider/css/settings.css" media="screen">
+    <link rel="stylesheet" href="{$theme}public/css/prettyPhoto.css" media="screen">
+    <link rel="stylesheet" href="{$theme}public/css/style.css">
+    <link rel="stylesheet" href="{$theme}public/css/colors/blue.css" id="colors">
+    <link rel="stylesheet" href="{$theme}public/css/theme-responsive.css">
+    <link href="{$theme}public/css/spectrum.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{$theme}public/images/favicon.ico">
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/others/html5shiv.min.js"></script>
+    <script src="__PUBLIC__/others/respond.min.js"></script>
+    <![endif]-->
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="{$theme}public/css/fonts/font-awesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
