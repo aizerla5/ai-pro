@@ -5,16 +5,16 @@
         <h3 class="h4 mar-no">{:lang('Account Login')}</h3>
         <p class="text-muted">{:lang('Sign In to your account')}</p>
     </div>
-    <form action="{:url('admin/Login/run_login')}" class="ajaxForm-captcha">
+    <form action="{:url('admin/Login/run_login')}" class="ajaxForm">
         <div class="form-group">
-            <input type="text" name="admin_username" class="form-control" placeholder="{:lang('Username')}" autofocus>
+            <input type="text" name="admin_username" class="form-control" placeholder="{:lang('Username')}" required data-bv-notempty-message="{:lang('The field was required')}">
         </div>
         <div class="form-group">
-            <input type="password" name="admin_pwd" class="form-control" placeholder="{:lang('Password')}">
+            <input type="password" name="admin_pwd" class="form-control" placeholder="{:lang('Password')}" required data-bv-notempty-message="{:lang('The field was required')}">
         </div>
         <div class="form-group">
             <img class="captcha" id="captcha" src="{:url('admin/Login/verify')}" style="cursor: pointer;width:100%;border: 1px solid #d5d5d5;" title="{:lang('Click to refresh')}">
-            <input type="text" name="verify" class="form-control" id="verify" placeholder="{:lang('Captcha')}">
+            <input type="text" name="verify" class="form-control" id="verify" placeholder="{:lang('Captcha')}" required data-bv-notempty-message="{:lang('The field was required')}">
         </div>
         <div class="checkbox pad-btm text-left">
             <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox" name="remember_me">

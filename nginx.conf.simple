@@ -1,0 +1,40 @@
+server {
+	listen		127.0.0.1:80;
+	server_name 	ai-shop.local;
+	set	$root	"d:/wtserver/www/ai-shop";
+	location ~ .*\.(gif|jpg|jpeg|bmp|png|ico|txt|js|css)$ {  
+        root $root;
+    }
+	
+	root $root;
+	index index.php index.html index.htm;
+	
+	allow		127.0.0.1;
+	#deny		all;
+	autoindex on;
+	
+	location @rewrite {
+		rewrite ^(.*)$ index.php/$1 last;
+	}
+	
+	location / {
+		if ( !-e $request_filename) {
+			rewrite ^(.*)$ /index.php?s=/$1 last;
+			break;
+		}
+	}
+	
+	location ~ .+\.php($|/) {
+		root    $root;
+		include		nginx.fastcgi.conf;
+		include		nginx.redis.conf;
+		fastcgi_split_path_info  ^(.+\.php)(.*)$;
+		fastcgi_param PATH_INFO $fastcgi_path_info;
+		fastcgi_param SCRIPT_FILENAME $root$fastcgi_script_name;
+		fastcgi_pass	php_farm;
+	}
+	
+    location ~ /\.ht {
+        deny  all;
+    }
+}
