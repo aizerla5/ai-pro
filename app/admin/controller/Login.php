@@ -35,7 +35,7 @@ class Login extends Common
     public function run_login()
     {
         if (!request()->isAjax()) {
-            $this->error("提交方式错误！", url('admin/Login/login'));
+            $this->error(lang('Please use a normal form of submission'), url('admin/Login/login'));
         } else {
             if (config('geetest.geetest_on')) {
                 if (!geetest_check(input('post.'))) {

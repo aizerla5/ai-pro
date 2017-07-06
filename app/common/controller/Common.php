@@ -60,6 +60,7 @@ class Common extends Controller
             $this->lang = config('default_lang');
         }
         $this->assign('lang', $this->lang);
+        $this->assign('web', __ROOT__ . '/app/admin/view/web');
     }
 
     /**
