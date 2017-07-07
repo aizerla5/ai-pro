@@ -11,21 +11,17 @@
             paths: {
                 'jquery': 'js/jquery-2.2.4.min',
                 'bootstrap': 'js/bootstrap.min',
-                'nifty': 'js/nifty.min',
+                'nifty': 'js/nifty',
                 'layer': 'js/layer/layer'
             },
             shim: {
                 'jquery': {
                     exports: 'jquery'
                 },
-                'bootstrap': {
-                    deps: ['jquery']
-                },
                 'nifty': {
-                    deps: ['bootstrap']
+                    exports: "nifty"
                 },
                 'layer': {
-                    deps: ['jquery'],
                     exports: "layer"
                 }
             }
@@ -39,6 +35,8 @@
     (function () {
         var config = {
             paths: {
+                'plugin/nano-scroll': 'plugins/nanoScroller/js/jquery.nanoscroller.min',
+                'plugin/metis-menu': 'plugins/metisMenu/metisMenu.min',
                 // form validator
                 'plugin/validator': 'plugins/bootstrap-validator/bootstrapValidator.min',
                 // masked-input
@@ -54,32 +52,38 @@
                 'plugin/spark-line': 'plugins/sparkline/jquery.sparkline.min'
             },
             shim: {
+                'plugin/nano-scroll': {
+                    deps: ['jquery']
+                },
+                'plugin/metis-menu': {
+                    deps: ['jquery']
+                },
                 'plugin/validator': {
-                    deps: ['bootstrap']
+                    deps: ['jquery']
                 },
                 'plugin/masked-input': {
-                    deps: ['bootstrap']
+                    deps: ['jquery']
                 },
                 'plugin/charts': {
-                    deps: ['nifty']
+                    deps: ['jquery']
                 },
                 'plugin/charts-resize': {
-                    deps: ['plugin/charts']
+                    deps: ['jquery']
                 },
                 'plugin/charts-pipe': {
-                    deps: ['plugin/charts-resize']
+                    deps: ['jquery']
                 },
                 'plugin/gauge': {
-                    deps: ['nifty']
+                    deps: ['jquery']
                 },
                 'plugin/morris': {
-                    deps: ['nifty']
+                    deps: ['jquery']
                 },
                 'plugin/raphael': {
-                    deps: ['nifty']
+                    deps: ['jquery']
                 },
                 'plugin/spark-line': {
-                    deps: ['nifty']
+                    deps: ['jquery']
                 }
             }
         };

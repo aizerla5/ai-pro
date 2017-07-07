@@ -16,6 +16,8 @@ var FA_ICON = {
 require([
     'jquery',
     'layer',
+    'plugin/nano-scroll',
+    'plugin/metis-menu',
     'nifty',
     'plugin/validator',
     'bg-image'
@@ -27,32 +29,7 @@ require([
         path: baseUrl + '/js/layer/'
     });
 
-
     /** ------------------------------------------------------------------------------------ **/
-    var effectList = 'easeInQuart easeOutQuart easeInBack easeOutBack easeInOutBack steps jumping rubber';
-    var niftyContainer = $('#container'),
-        niftyMainNav = $('#mainnav-container'),
-        niftyAside = $('#aside-container');
-
-    // Refresh the aside, to enable or disable the "Bootstrap Affix" when the navbar in a "static position".
-    niftyMainNav.niftyAffix('update');
-    niftyAside.niftyAffix('update');
-
-    var navigationMode = function () {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split("=");
-            if (pair[0] === "offcanvas") {
-                return pair[1];
-            }
-        }
-        return (false);
-    }();
-    if (navigationMode === "push" || navigationMode === "slide" || navigationMode === "reveal") {
-        $('.mainnav-toggle').removeClass('push slide reveal').addClass(navigationMode);
-        niftyContainer.removeClass('mainnav-lg mainnav-sm').addClass('mainnav-out ' + navigationMode);
-    }
     /** ------------------------------------------------------------------------------------ **/
 
     /**
