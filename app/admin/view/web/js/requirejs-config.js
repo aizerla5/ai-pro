@@ -11,7 +11,8 @@
             paths: {
                 'jquery': 'js/jquery-2.2.4.min',
                 'bootstrap': 'js/bootstrap.min',
-                'nifty': 'js/nifty.min'
+                'nifty': 'js/nifty.min',
+                'layer': 'js/layer/layer'
             },
             shim: {
                 'jquery': {
@@ -22,6 +23,10 @@
                 },
                 'nifty': {
                     deps: ['bootstrap']
+                },
+                'layer': {
+                    deps: ['jquery'],
+                    exports: "layer"
                 }
             }
         };
@@ -51,6 +56,18 @@
     (function () {
         var config = {
             paths: {
+                // form validator
+                'plugin/validator': 'plugins/bootstrap-validator/bootstrapValidator.min',
+                // masked-input
+                'plugin/masked-input': 'plugins/masked-input/jquery.maskedinput.min'
+            },
+            shim: {
+                'plugin/validator': {
+                    deps: ['bootstrap']
+                },
+                'plugin/masked-input': {
+                    deps: ['bootstrap']
+                }
             }
         };
         require.config(config);

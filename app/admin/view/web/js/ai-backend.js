@@ -8,7 +8,22 @@
 var CHARS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var GLOBAL_LAYER_INDEX = 0;
 var EL_CAPTCHA = '#captcha';
-require(['jquery', 'nifty'], function ($) {
+var FA_ICON = {
+    valid: 'fa fa-check-circle fa-lg text-success',
+    invalid: 'fa fa-times-circle fa-lg',
+    validating: 'fa fa-refresh'
+};
+require([
+    'jquery',
+    'layer',
+    'nifty',
+    'plugin/validator',
+    'bg-image'
+], function ($, layer) {
+    // loading layer style path.
+    layer.config({
+        path: baseUrl + '/js/layer/'
+    });
     /**
      * before submit callback
      * @TODO
@@ -85,5 +100,13 @@ require(['jquery', 'nifty'], function ($) {
     /**
      * ajax form with captcha
      */
-    $('.ajaxForm');
+    $('.ajaxForm').bootstrapValidator({
+        excluded: [':disabled'],
+        feedbackIcons: FA_ICON
+    }).on('success.form.bv', function (e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        beforeSubmitCallback();
+        $.post($form.attr('action'), $form.serialize(), successCallback, 'json');
+    });
 });
