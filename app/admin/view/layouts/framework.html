@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{$lang}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{:lang('Store Backend Manager System')}</title>
+    {include file='partials:stylesheet' /}
+    {include file='partials:scripts' /}
+</head>
+<body>
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+    <!--header nav-->
+    <!--===================================================-->
+    <header id="navbar">
+        <div id="navbar-container" class="boxed">
+            {include file='partials:logo' /}
+            {include file='partials:header-nav' /}
+        </div>
+    </header>
+    <!--===================================================-->
+    <!--END header nav-->
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <div id="content-container">
+
+            {include file='partials:page-title' /}
+            {include file='partials:breadcrumb' /}
+
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
+
+                {block name="main-content"}
+                {/block}
+
+            </div>
+            <!--===================================================-->
+            <!--End page content-->
+        </div>
+        <!--END CONTENT CONTAINER-->
+
+        {include file='partials:aside-nav' /}
+        {include file='partials:main-nav' /}
+    </div>
+
+    {include file='partials:footer' /}
+</div>
+<!--===================================================-->
+<!-- END OF CONTAINER -->
+
+</body>
+</html>
+

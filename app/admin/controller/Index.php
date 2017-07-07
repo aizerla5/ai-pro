@@ -21,8 +21,8 @@ class Index extends Base
      */
     public function index()
     {
-        $news_model = new NewsModel;
-        $member_model = new MemberList;
+        $news_model = new NewsModel();
+        $member_model = new MemberList();
         //热门文章排行
         $news_list = $news_model->where('news_l', $this->lang)->order('news_hits desc')->limit(0, 10)->select();
         $this->assign('news_list', $news_list);
