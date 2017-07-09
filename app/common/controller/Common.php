@@ -14,6 +14,11 @@ use think\captcha\Captcha;
 
 class Common extends Controller
 {
+
+    const REDIRECT_CODE_NO = 'error';
+
+    const REDIRECT_CODE_CAPTCHA = 'captcha';
+
     /**
      * @var string
      */

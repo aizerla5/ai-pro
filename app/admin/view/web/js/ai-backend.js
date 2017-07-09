@@ -7,7 +7,8 @@
 // +----------------------------------------------------------------------
 var CHARS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 var GLOBAL_LAYER_INDEX = 0;
-var EL_CAPTCHA = '#captcha';
+var EL_CAPTCHA = '.captcha';
+var CURRENT_FORM = null;
 var FA_ICON = {
     valid: 'fa fa-check-circle fa-lg text-success',
     invalid: 'fa fa-times-circle fa-lg',
@@ -17,8 +18,7 @@ require([
     'jquery',
     'layer',
     'plugin/nano-scroll',
-    'plugin/metis-menu',
-    'nifty',
+    'plugin/metismenu',
     'plugin/validator',
     'bg-image'
 ], function ($, layer) {
@@ -31,6 +31,17 @@ require([
 
     /** ------------------------------------------------------------------------------------ **/
     /** ------------------------------------------------------------------------------------ **/
+
+    /**
+     * refresh captcha
+     */
+    var refreshCaptcha = function () {
+        if (CURRENT_FORM !== null && $(EL_CAPTCHA, CURRENT_FORM).size()) {
+            $(EL_CAPTCHA, CURRENT_FORM).trigger('click');
+            $('.captcha-text', CURRENT_FORM).val('');
+            CURRENT_FORM = null;
+        }
+    };
 
     /**
      * before submit callback
@@ -50,8 +61,14 @@ require([
      * @returns {boolean}
      */
     var successCallback = function (data) {
+        var isRedirect = true;
         if (GLOBAL_LAYER_INDEX) {
             layer.close(GLOBAL_LAYER_INDEX);
+        }
+        if (CURRENT_FORM !== null) {
+            if (CURRENT_FORM.find(EL_CAPTCHA).size()) {
+                isRedirect = false;
+            }
         }
         // success
         if (data.code === 1) {
@@ -61,24 +78,19 @@ require([
                 anim: 1
             }, function (index) {
                 layer.close(index);
-                if (data.url !== undefined) {
-                    location.href = data.url;
-                }
+                location.href = data.url;
             });
         } else {
-            // click to refresh & set empty value.
-            if ($(EL_CAPTCHA).size()) {
-                $(EL_CAPTCHA).val('').trigger('click');
-            }
             layer.alert(data.msg, {
                 skin: 'layui-layer-lan',
                 closeBtn: 0,
                 anim: 2
             }, function (index) {
                 layer.close(index);
-                if (data.url !== undefined) {
+                if (isRedirect) {
                     location.href = data.url;
                 }
+                refreshCaptcha();
             });
         }
         return false;
@@ -119,6 +131,7 @@ require([
     }).on('success.form.bv', function (e) {
         e.preventDefault();
         var $form = $(e.target);
+        CURRENT_FORM = $form;
         beforeSubmitCallback();
         $.post($form.attr('action'), $form.serialize(), successCallback, 'json');
     });

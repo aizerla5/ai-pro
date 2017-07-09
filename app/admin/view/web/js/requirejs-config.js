@@ -35,54 +35,24 @@
     (function () {
         var config = {
             paths: {
-                'plugin/nano-scroll': 'plugins/nanoScroller/js/jquery.nanoscroller.min',
-                'plugin/metis-menu': 'plugins/metisMenu/metisMenu.min',
+                'plugin/nano-scroll': 'plugins/nano-scroller/js/jquery.nanoscroller.min',
+                'plugin/metismenu': 'plugins/metismenu/metisMenu.min',
                 // form validator
-                'plugin/validator': 'plugins/bootstrap-validator/bootstrapValidator.min',
+                'plugin/validator': 'plugins/bootstrap-validator/js/bootstrapValidator.min',
                 // masked-input
-                'plugin/masked-input': 'plugins/masked-input/jquery.maskedinput.min',
-                // charts
-                'plugin/charts': 'plugins/flot-charts/jquery.flot.min',
-                'plugin/charts-resize': 'plugins/flot-charts/jquery.flot.resize.min',
-                'plugin/charts-pipe': 'plugins/easy-pie-chart/jquery.easypiechart.min',
-                // gauge
-                'plugin/gauge': 'plugins/gauge-js/gauge.min',
-                'plugin/morris': 'plugins/morris-js/morris.min',
-                'plugin/raphael': 'plugins/morris-js/raphael-js/raphael.min',
-                'plugin/spark-line': 'plugins/sparkline/jquery.sparkline.min'
+                'plugin/masked-input': 'plugins/masked-input/jquery.maskedinput.min'
             },
             shim: {
                 'plugin/nano-scroll': {
                     deps: ['jquery']
                 },
-                'plugin/metis-menu': {
+                'plugin/metismenu': {
                     deps: ['jquery']
                 },
                 'plugin/validator': {
                     deps: ['jquery']
                 },
                 'plugin/masked-input': {
-                    deps: ['jquery']
-                },
-                'plugin/charts': {
-                    deps: ['jquery']
-                },
-                'plugin/charts-resize': {
-                    deps: ['jquery']
-                },
-                'plugin/charts-pipe': {
-                    deps: ['jquery']
-                },
-                'plugin/gauge': {
-                    deps: ['jquery']
-                },
-                'plugin/morris': {
-                    deps: ['jquery']
-                },
-                'plugin/raphael': {
-                    deps: ['jquery']
-                },
-                'plugin/spark-line': {
                     deps: ['jquery']
                 }
             }

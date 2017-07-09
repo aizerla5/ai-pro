@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 use app\common\controller\Common;
 use app\admin\model\Admin as AdminModel;
+use think\captcha\Captcha;
 
 class Login extends Common
 {
@@ -42,16 +43,19 @@ class Login extends Common
                     $this->error('验证不通过', url('admin/Login/login'));
                 };
             } else {
-                $this->verify_check(self::VERIFY_ID);
+                $verify = new Captcha();
+                if (!$verify->check(input('verify'), self::VERIFY_ID)) {
+                    $this->error(lang('The captcha code is incorrect!'), url('admin/Login/login'));
+                }
             }
             $admin_username = input('admin_username');
             $password = input('admin_pwd');
             $isRemember = input('remember_me');
-            $admin = new AdminModel;
+            $admin = new AdminModel();
             if ($admin->login($admin_username, $password, $isRemember)) {
                 $this->success(lang('Congratulations on your successful Login'), url('admin/Index/index'));
             } else {
-                $this->error($admin->getError());
+                $this->error($admin->getError(), url('admin/Login/login'));
             }
         }
     }
