@@ -267,55 +267,22 @@
 
         <!--Language selector-->
         <li class="dropdown">
-            <a id="demo-lang-switch" class="lang-selector dropdown-toggle" href="#" data-toggle="dropdown">
-                                <span class="lang-selected">
-                                    <img class="lang-flag" src="img/flags/united-kingdom.png" alt="English">
-                                </span>
+            {switch name="$lang"}
+            {case value="zh-cn"}
+            <a href="{:url('admin/Index/lang',['lang_s'=>'en'])}" class="lang-selector">
+                <span class="lang-selected">
+                    <img class="lang-flag" src="__ROOT__/public/img/flags/english.png" alt="{:lang('English')}">
+                </span>
             </a>
-
-            <!--Language selector menu-->
-            <ul class="head-list dropdown-menu">
-                <li>
-                    <!--English-->
-                    <a href="#" class="active">
-                        <img class="lang-flag" src="img/flags/united-kingdom.png" alt="English">
-                        <span class="lang-id">EN</span>
-                        <span class="lang-name">English</span>
-                    </a>
-                </li>
-                <li>
-                    <!--France-->
-                    <a href="#">
-                        <img class="lang-flag" src="img/flags/france.png" alt="France">
-                        <span class="lang-id">FR</span>
-                        <span class="lang-name">Fran&ccedil;ais</span>
-                    </a>
-                </li>
-                <li>
-                    <!--Germany-->
-                    <a href="#">
-                        <img class="lang-flag" src="img/flags/germany.png" alt="Germany">
-                        <span class="lang-id">DE</span>
-                        <span class="lang-name">Deutsch</span>
-                    </a>
-                </li>
-                <li>
-                    <!--Italy-->
-                    <a href="#">
-                        <img class="lang-flag" src="img/flags/italy.png" alt="Italy">
-                        <span class="lang-id">IT</span>
-                        <span class="lang-name">Italiano</span>
-                    </a>
-                </li>
-                <li>
-                    <!--Spain-->
-                    <a href="#">
-                        <img class="lang-flag" src="img/flags/spain.png" alt="Spain">
-                        <span class="lang-id">ES</span>
-                        <span class="lang-name">Espa&ntilde;ol</span>
-                    </a>
-                </li>
-            </ul>
+            {/case}
+            {case value="en-us"}
+            <a href="{:url('admin/Index/lang',['lang_s'=>'cn'])}" class="lang-selector">
+                <span class="lang-selected">
+                    <img class="lang-flag" src="__ROOT__/public/img/flags/china.png" alt="{:lang('Chinese')}">
+                </span>
+            </a>
+            {/case}
+            {/switch}
         </li>
         <!--End language selector-->
 
@@ -323,41 +290,41 @@
         <!--User dropdown-->
         <li id="dropdown-user" class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
-                                <span class="pull-right">
-                                    <!--<img class="img-circle img-user media-object" src="img/profile-photos/1.png" alt="Profile Picture">-->
-                                    <i class="demo-pli-male ic-user"></i>
-                                </span>
-                <div class="username hidden-xs">Aaron Chavez</div>
+                <span class="pull-right">
+                    <img class="img-circle img-user media-object" src="{$avatar|get_thumb=46,46,1}" alt="{:session('backend_user.admin_realname')}">
+                    <!--<i class="demo-pli-male ic-user"></i>-->
+                </span>
+                <div class="username hidden-xs">{:session('backend_user.admin_realname')}</div>
             </a>
 
 
             <div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
 
                 <!-- Dropdown heading  -->
-                <div class="pad-all bord-btm">
+                <!--<div class="pad-all bord-btm">
                     <p class="text-main mar-btm"><span class="text-bold">750GB</span> of 1,000GB Used</p>
                     <div class="progress progress-sm">
                         <div class="progress-bar" style="width: 70%;">
                             <span class="sr-only">70%</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
 
                 <!-- User dropdown menu -->
                 <ul class="head-list">
                     <li>
-                        <a href="#">
+                        <a href="{:url('admin/Admin/profile')}">
                             <i class="demo-pli-male icon-lg icon-fw"></i> Profile
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="#">
                             <span class="badge badge-danger pull-right">9</span>
                             <i class="demo-pli-mail icon-lg icon-fw"></i> Messages
                         </a>
-                    </li>
-                    <li>
+                    </li>-->
+                    <!--<li>
                         <a href="#">
                             <span class="label label-success pull-right">New</span>
                             <i class="demo-pli-gear icon-lg icon-fw"></i> Settings
@@ -367,7 +334,7 @@
                         <a href="#">
                             <i class="demo-pli-information icon-lg icon-fw"></i> Help
                         </a>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="#">
                             <i class="demo-pli-computer-secure icon-lg icon-fw"></i> Lock screen
@@ -377,7 +344,7 @@
 
                 <!-- Dropdown footer -->
                 <div class="pad-all text-right">
-                    <a href="pages-login.html" class="btn btn-primary">
+                    <a href="{:url('admin/Login/logout')}" class="btn btn-primary">
                         <i class="demo-pli-unlock"></i> Logout
                     </a>
                 </div>

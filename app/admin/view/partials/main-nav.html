@@ -12,29 +12,29 @@
                     <div id="mainnav-profile" class="mainnav-profile">
                         <div class="profile-wrap">
                             <div class="pad-btm">
-                                <span class="label label-success pull-right">New</span>
-                                <img class="img-circle img-sm img-border" src="img/profile-photos/1.png" alt="Profile Picture">
+                                <!--<span class="label label-success pull-right">New</span>-->
+                                <img class="img-circle img-sm img-border" src="{$avatar|get_thumb=46,46,1}" alt="{:session('backend_user.admin_realname')}">
                             </div>
                             <a href="#profile-nav" class="box-block" data-toggle="collapse" aria-expanded="false">
-                                            <span class="pull-right dropdown-toggle">
-                                                <i class="dropdown-caret"></i>
-                                            </span>
-                                <p class="mnp-name">Aaron Chavez</p>
-                                <span class="mnp-desc">aaron.cha@themeon.net</span>
+                                <span class="pull-right dropdown-toggle">
+                                    <i class="dropdown-caret"></i>
+                                </span>
+                                <p class="mnp-name">{:session('backend_user.admin_realname')}</p>
+                                <span class="mnp-desc">{:session('backend_user.admin_email')}</span>
                             </a>
                         </div>
                         <div id="profile-nav" class="collapse list-group bg-trans">
-                            <a href="#" class="list-group-item">
-                                <i class="demo-pli-male icon-lg icon-fw"></i> View Profile
+                            <a href="{:url('admin/Admin/profile')}" class="list-group-item">
+                                <i class="demo-pli-male icon-lg icon-fw"></i> {:lang('View Profile')}
                             </a>
-                            <a href="#" class="list-group-item">
+                            <!--<a href="#" class="list-group-item">
                                 <i class="demo-pli-gear icon-lg icon-fw"></i> Settings
                             </a>
                             <a href="#" class="list-group-item">
                                 <i class="demo-pli-information icon-lg icon-fw"></i> Help
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <i class="demo-pli-unlock icon-lg icon-fw"></i> Logout
+                            </a>-->
+                            <a href="{:url('admin/Login/logout')}" class="list-group-item">
+                                <i class="demo-pli-unlock icon-lg icon-fw"></i> {:lang('Logout')}
                             </a>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     <div id="mainnav-shortcut">
                         <ul class="list-unstyled">
                             <li class="col-xs-3" data-content="My Profile">
-                                <a class="shortcut-grid" href="#">
+                                <a class="shortcut-grid" href="{:url('admin/Admin/profile')}">
                                     <i class="demo-psi-male"></i>
                                 </a>
                             </li>

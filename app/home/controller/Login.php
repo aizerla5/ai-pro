@@ -66,7 +66,7 @@ class Login extends Base
             session('user', $member);
             if ($remember && $member['user_status']) {
                 //更新cookie
-                cookie('ai_logged_user', jiami("{$member['member_list_id']}.{$data['last_login_time']}"));
+                cookie('ai_logged_user', encryption("{$member['member_list_id']}.{$data['last_login_time']}"));
             }
 
             //根据需要决定是否同步后台登录状态

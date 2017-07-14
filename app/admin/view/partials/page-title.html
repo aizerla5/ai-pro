@@ -1,6 +1,6 @@
 <!--Page Title-->
 <div id="page-title">
-    <h1 class="page-header text-overflow">Widgets</h1>
+    <h1 class="page-header text-overflow">{if condition="!empty($pageTitle)"}{$pageTitle}{else}{:lang('Dashboard')}{/if}</h1>
     <!--SearchBox-->
     <div class="searchbox">
         <div class="input-group custom-search-form">

@@ -13,11 +13,16 @@ use app\admin\model\AuthRule;
 
 class Base extends Common
 {
+    /** @var  array|null Backend User */
+    protected $user;
+
     public function _initialize()
     {
         parent::_initialize();
-        if (!$this->check_admin_login()) $this->redirect('admin/Login/login');//未登录
-        $auth = new AuthRule;
+        // check backend user login ?!
+        if (!$this->check_admin_login()) $this->redirect('admin/Login/login');
+
+        $auth = new AuthRule();
         $id_curr = $auth->get_url_id();
         if (!$auth->check_auth($id_curr)) $this->error('没有权限', url('admin/Index/index'));
         //获取有权限的菜单tree
@@ -30,7 +35,7 @@ class Base extends Common
         $menus_child = $auth->get_admin_parent_menus($id_curr);
         $this->assign('menus_child', $menus_child);
         $this->assign('id_curr', $id_curr);
-        $this->assign('admin_avatar', session('admin_auth.admin_avatar'));
+        $this->assign('avatar', session('backend_user.admin_avatar'));
     }
 }
 

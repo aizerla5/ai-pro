@@ -1263,7 +1263,7 @@ function showmsg($msg, $class = '')
  * @param string $key 加密密钥，默认读取data_auth_key配置
  * @return string 加密后的字符串
  */
-function jiami($txt, $key = null)
+function encryption($txt, $key = null)
 {
     empty($key) && $key = config('data_auth_key');
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-=_";
@@ -1344,9 +1344,10 @@ function get_imgurl($url, $cat = 0)
  * @param $url
  * @param int $width
  * @param int $height
+ * @param int $avatar
  * @return string
  */
-function get_thumb($url, $width = 100, $height = 100)
+function get_thumb($url, $width = 100, $height = 100, $avatar = 0)
 {
     if (trim($url) != '') {
         $url = ROOT_PATH . ltrim($url, '/');
@@ -1363,6 +1364,9 @@ function get_thumb($url, $width = 100, $height = 100)
             }
             return __ROOT__ . '/' . str_replace(ROOT_PATH, '', $thumbnail);
         }
+    }
+    if ($avatar) {
+        return __ROOT__ . '/public/img/profile-photos/1.png';
     }
     return __ROOT__ . '/public/img/no_img.jpg';
 }

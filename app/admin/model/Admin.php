@@ -24,14 +24,17 @@ class Admin extends Model
     protected $createTime = 'admin_addtime';
     protected $updateTime = false;
 
+    const SESSION_UNIQUE_KEY = 'backend_user';
+    const SESSION_FRONTEND_USER = 'user';
+
     /**
      * 用户登录
      * @param string $username 用户名
      * @param string $password 密码
-     * @param bool $rememberme 记住登录
+     * @param bool $rememberMe 记住登录
      * @return bool|mixed
      */
-    public function login($username = '', $password = '', $rememberme = false)
+    public function login($username = '', $password = '', $rememberMe = false)
     {
         $username = trim($username);
         $password = trim($password);
@@ -51,7 +54,7 @@ class Admin extends Model
                 $user['admin_hits'] = $user['admin_hits'] + 1;
                 if ($user->save()) {
                     // 自动登录
-                    $this->auto_login(self::get($aid), $rememberme);
+                    $this->auto_login(self::get($aid), $rememberMe);
                 }
                 return $aid;
             }
@@ -62,35 +65,47 @@ class Admin extends Model
     /**
      * 自动登录
      * @param mixed $user 用户对象
-     * @param bool $rememberme 是否记住登录，默认7天
+     * @param bool $rememberMe 是否记住登录，默认7天
      */
-    public function auto_login($user, $rememberme = false)
+    public function auto_login($user, $rememberMe = false)
     {
         // 记录登录
-        $auth = array(
+        $auth = [
             'aid' => $user->admin_id,
             'admin_avatar' => $user->admin_avatar,
             'admin_last_change_pwd_time' => $user->admin_changepwd,
+            'admin_email' => $user->admin_email,
             'admin_realname' => $user->admin_realname,
             'admin_username' => $user->admin_username,
+            'admin_tel' => $user->admin_tel,
+            'admin_hits' => $user->admin_hits,
+            'admin_ip' => $user->admin_ip,
             'member_id' => $user->member_id,
             'admin_last_ip' => $user->admin_last_ip,
             'admin_last_time' => $user->admin_last_time
-        );
+        ];
         session('admin_auth', $auth);
         session('admin_auth_sign', data_signature($auth));
 
         // 记住登录
-        if ($rememberme) {
-            $signin_token = $user->admin_username . $user->admin_id . $user->admin_last_time;
+        if ($rememberMe) {
+            $signToken = $user->admin_username . $user->admin_id . $user->admin_last_time;
             cookie('aid', $user->admin_id, 24 * 3600 * 7);
-            cookie('signin_token', data_signature($signin_token), 24 * 3600 * 7);
+            cookie('signin_token', data_signature($signToken), 24 * 3600 * 7);
         }
         //根据需要决定是否记录前台登陆
         session('hid', $auth['member_id']);
-        cookie('yf_logged_user', jiami("{$auth['member_id']}.{$auth['admin_last_time']}"));
+        // set login cookie
+        cookie('ai_logged_user', encryption("{$auth['member_id']}.{$auth['admin_last_time']}"));
+        // for backend session
+        session(self::SESSION_UNIQUE_KEY, $auth);
         $member = Db::name('member_list')->where('member_list_id', $auth['member_id'])->find();
-        if ($member) session('user', $member);
+        // for frontend session
+        if ($member['member_list_id']) {
+            if (isset($member['member_list_pwd'])) unset($member['member_list_pwd']);
+            if (isset($member['member_list_salt'])) unset($member['member_list_salt']);
+            if ($member) session(self::SESSION_FRONTEND_USER, $member);
+        }
     }
 
     /**
@@ -104,8 +119,8 @@ class Admin extends Model
             if (cookie('?aid') && cookie('?signin_token')) {
                 $user = $this::get(cookie('aid'));
                 if ($user) {
-                    $signin_token = data_signature($user['admin_username'] . $user['admin_id'] . $user['admin_last_time']);
-                    if (cookie('signin_token') == $signin_token) {
+                    $signToken = data_signature($user['admin_username'] . $user['admin_id'] . $user['admin_last_time']);
+                    if (cookie('signin_token') == $signToken) {
                         $this->auto_login($user, true);
                         return $user['admin_id'];
                     }
