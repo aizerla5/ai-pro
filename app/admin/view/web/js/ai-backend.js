@@ -28,8 +28,14 @@ require([
     layer.config({
         path: baseUrl + '/js/layer/'
     });
+    /** ------------------------------------------------------------------------------------ **/
+    /** VARS ----------------------------------------------------------------------------- **/
+    /** ------------------------------------------------------------------------------------ **/
+    var navContainer = '#navbar-container',
+        navTopLinks = navContainer + ' .navbar-top-links';
 
     /** ------------------------------------------------------------------------------------ **/
+    /** FUNCTIONS --------------------------------------------------------------------- **/
     /** ------------------------------------------------------------------------------------ **/
 
     /**
@@ -121,6 +127,20 @@ require([
             $(this).attr('src', src);
         });
     }
+
+    /**
+     * Listener all classes events.
+     */
+    var tooltip = $('.add-tooltip');
+    if (tooltip.size()) tooltip.tooltip();
+    var popover = $('.add-popover');
+    if (popover.size()) popover.popover();
+
+    $(navTopLinks).on('shown.bs.dropdown', '.dropdown', function () {
+        $(this).find('.nano').nanoScroller({
+            preventPageScrolling: true
+        });
+    });
 
     /**
      * ajax form with captcha

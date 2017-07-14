@@ -37,6 +37,7 @@
             paths: {
                 'plugin/nano-scroll': 'plugins/nano-scroller/js/jquery.nanoscroller.min',
                 'plugin/metismenu': 'plugins/metismenu/metisMenu.min',
+                'plugin/resize-end': 'plugins/resize-end/jquery.resizeend.min',
                 // form validator
                 'plugin/validator': 'plugins/bootstrap-validator/js/bootstrapValidator.min',
                 // masked-input
@@ -47,6 +48,9 @@
                     deps: ['jquery']
                 },
                 'plugin/metismenu': {
+                    deps: ['jquery']
+                },
+                'plugin/resize-end': {
                     deps: ['jquery']
                 },
                 'plugin/validator': {
