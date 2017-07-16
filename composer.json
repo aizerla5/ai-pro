@@ -28,13 +28,22 @@
         "overtrue/wechat": "~3.1",
         "phpoffice/phpexcel": "^1.8",
         "riverslei/payment": "~2.0",
-        "ai/geetest": "^1.0",
-        "ai/tp5-addons": "^1.0"
+        "yfcmf/geetest": "*",
+        "yfcmf/tp5-addons": "*"
     },
     "extra": {
         "think-path": "thinkphp"
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        },
+        {
+            "packagist": false
+        }
+    ]
 }
