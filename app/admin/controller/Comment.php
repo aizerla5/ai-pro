@@ -15,7 +15,7 @@ class Comment extends Base
 {
     /*
      * 评论列表
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public function comment_list()
     {
@@ -34,7 +34,7 @@ class Comment extends Base
 
     /*
      * 评论删除
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public function comment_del()
     {
@@ -57,7 +57,7 @@ class Comment extends Base
 
     /*
      * 全选删除
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public function comment_alldel()
     {
@@ -81,7 +81,7 @@ class Comment extends Base
 
     /*
      * 评论审核/取消审核
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public function comment_state()
     {
@@ -100,7 +100,7 @@ class Comment extends Base
 
     /*
      * 评论设置显示
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public function comment_setting()
     {
@@ -111,7 +111,7 @@ class Comment extends Base
 
     /*
      * 评论设置保存
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public function runcsys()
     {

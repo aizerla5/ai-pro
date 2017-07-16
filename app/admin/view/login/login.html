@@ -7,20 +7,20 @@
     </div>
     <form action="{:url('admin/Login/run_login')}" class="ajaxForm text-left">
         <div class="form-group">
-            <input type="text" name="admin_username" class="form-control" placeholder="{:lang('Username')}" required data-bv-notempty-message="{:lang('The field was required')}">
+            <input type="text" tabindex="1" name="admin_username" class="form-control" placeholder="{:lang('Username')}" required data-bv-notempty-message="{:lang('The field was required')}">
         </div>
         <div class="form-group">
-            <input type="password" name="admin_pwd" class="form-control" placeholder="{:lang('Password')}" required data-bv-notempty-message="{:lang('The field was required')}">
+            <input type="password" tabindex="2" name="admin_pwd" class="form-control" placeholder="{:lang('Password')}" required data-bv-notempty-message="{:lang('The field was required')}">
         </div>
         <div class="form-group">
             <img class="captcha" id="captcha" src="{:url('admin/Login/verify')}" style="cursor: pointer;width:100%;border: 1px solid #d5d5d5;" title="{:lang('Click to refresh')}">
-            <input type="text" name="verify" class="form-control captcha-text" id="verify" placeholder="{:lang('Captcha')}" required data-bv-notempty-message="{:lang('The field was required')}">
+            <input type="text" tabindex="3" name="verify" class="form-control captcha-text" id="verify" placeholder="{:lang('Captcha')}" required data-bv-notempty-message="{:lang('The field was required')}">
         </div>
         <div class="checkbox pad-btm text-left">
-            <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox" name="remember_me">
+            <input id="demo-form-checkbox" class="magic-checkbox" type="checkbox" name="remember_me" tabindex="4">
             <label for="demo-form-checkbox">{:lang('Remember me')}</label>
         </div>
-        <button class="btn btn-primary btn-lg btn-block" type="submit">{:lang('Sign In')}</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" tabindex="5">{:lang('Sign In')}</button>
     </form>
 </div>
 

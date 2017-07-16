@@ -1,7 +1,7 @@
 <?php
 /*
 *	测试是否可写
-*	aizerla <15564401@qq.com>
+*	aizerla <1020882516@qq.com>
 */
 function testwrite($d)
 {
@@ -20,7 +20,7 @@ function testwrite($d)
 
 /*
 *	建立文件夹
-*	aizerla <15564401@qq.com>
+*	aizerla <1020882516@qq.com>
 */
 function create_dir($path)
 {
@@ -42,7 +42,7 @@ function create_dir($path)
 
 /*
 *	返回路径
-*	aizerla <15564401@qq.com>
+*	aizerla <1020882516@qq.com>
 */
 function dir_path($path)
 {
@@ -54,7 +54,7 @@ function dir_path($path)
 
 /*
 *	执行sql文件
-*	aizerla <15564401@qq.com>
+*	aizerla <1020882516@qq.com>
 */
 function execute_sql($db, $file, $tablepre)
 {
@@ -89,7 +89,7 @@ function execute_sql($db, $file, $tablepre)
 
 /*
 *	更新系统设置
-*	aizerla <15564401@qq.com>
+*	aizerla <1020882516@qq.com>
 */
 function update_site_configs($db, $table_prefix)
 {
@@ -129,7 +129,7 @@ helllo;
 
 /*
 *	创建管理员
-*	aizerla <15564401@qq.com>
+*	aizerla <1020882516@qq.com>
 */
 function create_admin_account($db, $table_prefix)
 {
@@ -154,7 +154,7 @@ hello;
 
 /*
 *	写入配置
-*	aizerla <15564401@qq.com>
+*	aizerla <1020882516@qq.com>
 */
 function create_config($config)
 {

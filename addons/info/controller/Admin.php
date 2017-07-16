@@ -13,29 +13,30 @@ use app\common\model\Addon as AddonModel;
 
 class Admin extends Base
 {
-	protected function _initialize()
-	{
-		//调用admin/Base控制器的初始化
-		action('admin/Base/_initialize');
-	}
-	/*
-	 * 设置
-	 */
-	public function config()
-	{
-        $model=new AddonModel;
-	    if(request()->isAjax()){
-		    $display=input('display',0,'intval');
-            $rst=$model->setConfig('info.display',$display);
-            if($rst){
-                $this->success('更新设置成功',url('admin/Addons/addons_list'));
-            }else{
-                $this->error('更新设置失败',url('admin/Addons/addons_list'));
+    protected function _initialize()
+    {
+        //调用admin/Base控制器的初始化
+        action('admin/Base/_initialize');
+    }
+
+    /*
+     * 设置
+     */
+    public function config()
+    {
+        $model = new AddonModel;
+        if (request()->isAjax()) {
+            $display = input('display', 0, 'intval');
+            $rst = $model->setConfig('info.display', $display);
+            if ($rst) {
+                $this->success('更新设置成功', url('admin/Addons/addons_list'));
+            } else {
+                $this->error('更新设置失败', url('admin/Addons/addons_list'));
             }
-        }else{
-		    $config=$model->getConfig('info');
-		    $this->assign('config',$config);
+        } else {
+            $config = $model->getConfig('info');
+            $this->assign('config', $config);
             return $this->fetch();
         }
-	}
+    }
 }

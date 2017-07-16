@@ -191,7 +191,7 @@ class Ueditor extends Common
 
     /**
      * 遍历获取目录下的指定类型的文件
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      * @param string $path
      * @param string $allowFiles
      * @param array $files

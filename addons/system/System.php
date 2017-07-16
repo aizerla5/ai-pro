@@ -6,22 +6,22 @@
 // +----------------------------------------------------------------------
 // | Author: Ai Ye
 // +----------------------------------------------------------------------
-namespace addons\maintain;
+namespace addons\system;
 
 use think\Addons;
 
 /**
  * 显示日常维护
  */
-class Maintain extends Addons
+class System extends Addons
 {
     public $info = [
-        'name' => 'Maintain',
-        'title' => '日常维护',
-        'description' => '后台首页日常维护',
+        'name' => 'System',
+        'title' => '系统检测及维护',
+        'description' => '后台首页检测维护',
         'status' => 0,
-        'author' => 'rainfer',
-        'version' => '0.1',
+        'author' => 'aizerla',
+        'version' => '1.0',
         'admin'=>'0'
     ];
 
@@ -30,7 +30,7 @@ class Maintain extends Addons
      */
     public $hooks = [
         // 钩子名称 => 钩子说明
-        'maintain'=>'日常维护钩子'
+        'system'=>'检测维护事件'
     ];
     /**
      * @var array 插件管理方法,格式:['控制器/操作方法',[参数数组]])
@@ -60,10 +60,10 @@ class Maintain extends Addons
     }
 
     /**
-     * 实现的maintain钩子方法
+     * 实现的system钩子方法
      * @return mixed
      */
-    public function maintain()
+    public function system()
     {
         $config=$this->getConfig();
 		if($config['display'])
@@ -122,7 +122,7 @@ class Maintain extends Addons
             }
             $this->assign('log_size',$log_size);
             $this->assign('log_file_cnt',$log_file_cnt);
-            return $this->fetch('maintain');
+            return $this->fetch('system');
         }
     }
 }

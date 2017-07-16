@@ -197,7 +197,7 @@ class Sys extends Base
 
     /*
      * 添加路由规则操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function route_runadd()
@@ -214,7 +214,7 @@ class Sys extends Base
 
     /*
      * 修改路由规则操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function route_runedit()
@@ -241,7 +241,7 @@ class Sys extends Base
 
     /*
      * 路由规则修改返回值操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function route_edit()
@@ -254,7 +254,7 @@ class Sys extends Base
 
     /*
      * 路由规则排序
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function route_order()
@@ -272,7 +272,7 @@ class Sys extends Base
 
     /*
      * 路由规则删除操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function route_del()
@@ -289,7 +289,7 @@ class Sys extends Base
 
     /*
      * 修改路由规则状态
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function route_state()
@@ -323,7 +323,7 @@ class Sys extends Base
 
     /*
      * 路由规则设置
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function runurlsys()
@@ -589,7 +589,7 @@ class Sys extends Base
 
     /*
      * 文章来源列表
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public function source_list()
     {
@@ -602,7 +602,7 @@ class Sys extends Base
 
     /*
      * 添加来源操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function source_runadd()
@@ -618,7 +618,7 @@ class Sys extends Base
 
     /*
      * 来源删除操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function source_del()
@@ -634,7 +634,7 @@ class Sys extends Base
 
     /*
      * 来源修改返回值操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function source_edit()
@@ -650,7 +650,7 @@ class Sys extends Base
 
     /*
      * 修改来源操作
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function source_runedit()
@@ -674,7 +674,7 @@ class Sys extends Base
 
     /*
      * 来源排序
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function source_order()
@@ -1055,7 +1055,7 @@ class Sys extends Base
     /**
      * 优化表
      * @param  String $tables 表名
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function optimize($tables = null)
@@ -1085,7 +1085,7 @@ class Sys extends Base
     /**
      * 修复表
      * @param  String $tables 表名
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function repair($tables = null)
@@ -1115,7 +1115,7 @@ class Sys extends Base
     /**
      * 备份单表
      * @param  String $table 不含前缀表名
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function exportsql($table = null)
@@ -1137,7 +1137,7 @@ class Sys extends Base
     /**
      * 删除备份文件
      * @param  Integer $time 备份时间
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function del($time = 0)
@@ -1316,7 +1316,7 @@ class Sys extends Base
 
     /*
      * 表格导入
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function excel_runimport()
@@ -1365,7 +1365,7 @@ class Sys extends Base
 
     /*
      * 数据导出功能
-     * @author aizerla <15564401@qq.com>
+     * @author aizerla <1020882516@qq.com>
      */
     public
     function excel_runexport($table)

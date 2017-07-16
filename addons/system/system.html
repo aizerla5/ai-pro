@@ -37,18 +37,18 @@
 		<tbody>
 		<tr>
 			<td colspan="2">
-				<a href="{:addon_url('maintain://Action/maintain',array('action'=>'download_log'))}" target="_blank" class="btn btn-default maintain">下载日志</a>
-				<a href="{:addon_url('maintain://Action/maintain',array('action'=>'view_log'))}" target="_blank" class="btn btn-default maintain">查看日志</a>
-				<a href="{:addon_url('maintain://Action/maintain',array('action'=>'clear_log'))}" class="btn btn-default rst-url-btn maintain">清除日志</a>
+				<a href="{:addon_url('system://Action/system',array('action'=>'download_log'))}" target="_blank" class="btn btn-default system">下载日志</a>
+				<a href="{:addon_url('system://Action/system',array('action'=>'view_log'))}" target="_blank" class="btn btn-default system">查看日志</a>
+				<a href="{:addon_url('system://Action/system',array('action'=>'clear_log'))}" class="btn btn-default rst-url-btn system">清除日志</a>
 				{if condition="$danger_mode_debug"}
-					<a href="{:addon_url('maintain://Action/maintain',array('action'=>'debug_off'))}" class="btn btn-default rst-url-btn maintain">关闭调试</a>
+					<a href="{:addon_url('system://Action/system',array('action'=>'debug_off'))}" class="btn btn-default rst-url-btn system">关闭调试</a>
 					{else /}
-					<a href="{:addon_url('maintain://Action/maintain',array('action'=>'debug_on'))}" class="btn btn-default rst-url-btn maintain">打开调试</a>
+					<a href="{:addon_url('system://Action/system',array('action'=>'debug_on'))}" class="btn btn-default rst-url-btn system">打开调试</a>
 				{/if}
 				{if condition="$system_pageshow"}
-					<a href="{:addon_url('maintain://Action/maintain',array('action'=>'trace_off'))}" class="btn btn-default rst-url-btn maintain">关闭Trace</a>
+					<a href="{:addon_url('system://Action/system',array('action'=>'trace_off'))}" class="btn btn-default rst-url-btn system">关闭Trace</a>
 					{else /}
-					<a href="{:addon_url('maintain://Action/maintain',array('action'=>'trace_on'))}" class="btn btn-default rst-url-btn maintain">打开Trace</a>
+					<a href="{:addon_url('system://Action/system',array('action'=>'trace_on'))}" class="btn btn-default rst-url-btn system">打开Trace</a>
 				{/if}
 			</td>
 		</tr>

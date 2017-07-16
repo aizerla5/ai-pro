@@ -2,94 +2,101 @@
 
 {block name="main-content"}
 <div class="row">
-    <div class="col-xs-12">
-        <!-- 提示 -->
-        <!--<div class="alert alert-block alert-success">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
-            <i class="ace-icon fa fa-check green"></i>
-            为了您更好的使用本系统，建议屏幕分辨率1280*768以上，并且安装chrome谷歌浏览器 ——— <a href="{:url('admin/Help/soft')}">进入软件下载专区</a>
-        </div>-->
+    <div class="col-sm-12">
+        <!-- notice use browser -->
+        <div class="panel panel-dark">
+            <div class="panel-heading">
+                <div class="panel-control">
+                    <button class="btn btn-default" data-dismiss="panel"><i class="demo-pli-cross"></i></button>
+                </div>
+                <h3 class="panel-title">{:lang('Tips')}</h3>
+            </div>
+            <div id="demo-panel-collapse" class="collapse in">
+                <div class="panel-body">
+                    <p>{:lang('For your better use of the system, it is recommended that the screen resolution above 1280*768, and install chrome Google browser')}</p>
+                    <a href="{:url('admin/Help/soft')}" class="btn btn-default btn-hover-dark">{:lang('Go to the software Download')}</a>
+                </div>
+            </div>
+        </div>
+        <!-- end notice use browser -->
+    </div>
+    <div class="col-sm-8">
         <div class="row">
-            <div class="space-6"></div>
-            <div class="col-sm-7 infobox-container">
-                <div class="infobox infobox-green col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="infobox-icon">
-                        <i class="ace-icon fa fa-folder"></i>
+            <!-- 文章数据统计 -->
+            <div class="col-lg-4">
+                <div class="panel panel-success panel-colorful">
+                    <div class="pad-all media">
+                        <div class="media-left">
+                            <i class="demo-pli-information icon-3x icon-fw"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="h3 text-light mar-no media-heading">{$tonews_count}</p>
+                            <span>{:lang('Number of articles today')}</span>
+                        </div>
                     </div>
-                    <div class="infobox-data">
-                        <span class="infobox-data-number">{$tonews_count}</span>
-                        <div class="infobox-content">今日普通文章数</div>
+                    <div class="progress progress-xs progress-success mar-no">
+                        <div role="progressbar" aria-valuenow="{$difday|round=###,0}" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: {$difday|round=###,0}%"></div>
                     </div>
-                    <div class="stat {if condition='$difday lt 1'}stat-important{else /}stat-success{/if}">{$difday|round=###,0}%</div>
+                    <div class="pad-all text-sm">
+                        {:lang('Total number of articles')} <span class="text-semibold">{$news_count}</span>
+                    </div>
                 </div>
-                <div class="infobox infobox-blue col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="infobox-icon">
-                        <i class="ace-icon fa fa-user"></i>
-                    </div>
-                    <div class="infobox-data">
-                        <span class="infobox-data-number">{$tomembers_count}</span>
-                        <div class="infobox-content">今日增加会员</div>
-                    </div>
-                    <div class="stat {if condition='$difday_m lt 1'}stat-important{else /}stat-success{/if}">{$difday_m|round=###,0}%</div>
-                </div>
-                <div class="infobox infobox-pink col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="infobox-icon">
-                        <i class="ace-icon fa fa-comment"></i>
-                    </div>
-                    <div class="infobox-data">
-                        <span class="infobox-data-number">{$tocoms_count}</span>
-                        <div class="infobox-content">今日评论</div>
-                    </div>
-                    <div class="stat {if condition='$difday_c lt 1'}stat-important{else /}stat-success{/if}">{$difday_c|round=###,0}%</div>
-                </div>
-                <div class="infobox infobox-orange infobox-dark col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="infobox-icon">
-                        <i class="ace-icon fa fa-folder"></i>
-                    </div>
+            </div><!-- 文章统计结束 -->
 
-                    <div class="infobox-data">
-                        <div class="infobox-content">总文章数</div>
-                        <a href="{:url('admin/News/news_list')}">
-                            <div class="infobox-content">{$news_count}</div>
-                        </a>
+            <!-- 会员总数统计 -->
+            <div class="col-lg-4">
+                <div class="panel panel-primary panel-colorful">
+                    <div class="pad-all media">
+                        <div class="media-left">
+                            <i class="demo-pli-male icon-3x icon-fw"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="h3 text-light mar-no media-heading">{$tomembers_count}</p>
+                            <span>{:lang('Number of members today')}</span>
+                        </div>
+                    </div>
+                    <div class="progress progress-xs progress-success mar-no">
+                        <div role="progressbar" aria-valuenow="{$difday_m|round=###,0}" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: {$difday_m|round=###,0}%"></div>
+                    </div>
+                    <div class="pad-all text-sm">
+                        {:lang('Total number of members')} <span class="text-semibold">{$members_count}</span>
                     </div>
                 </div>
-                <div class="infobox infobox-green infobox-dark col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="infobox-icon">
-                        <i class="ace-icon fa fa-users"></i>
+            </div><!-- 会员统计结束 -->
+
+            <!-- 评论统计 -->
+            <div class="col-lg-4">
+                <div class="panel panel-info panel-colorful">
+                    <div class="pad-all media">
+                        <div class="media-left">
+                            <i class="demo-pli-speech-bubble-7 icon-3x icon-fw"></i>
+                        </div>
+                        <div class="media-body">
+                            <p class="h3 text-light mar-no media-heading">{$tocoms_count}</p>
+                            <span>{:lang('Number of reviews today')}</span>
+                        </div>
                     </div>
-                    <div class="infobox-data">
-                        <div class="infobox-content">总会员数</div>
-                        <a href="{:url('admin/Member/member_list')}">
-                            <div class="infobox-content">{$members_count}</div>
-                        </a>
+                    <div class="progress progress-xs progress-success mar-no">
+                        <div role="progressbar" aria-valuenow="{$difday_c|round=###,0}" aria-valuemin="0" aria-valuemax="100" class="progress-bar progress-bar-light" style="width: {$difday_c|round=###,0}%"></div>
                     </div>
-                </div>
-                <div class="infobox infobox-orange2 infobox-dark col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <div class="infobox-icon">
-                        <i class="ace-icon fa fa-comment"></i>
-                    </div>
-                    <div class="infobox-data">
-                        <div class="infobox-content">总评论数</div>
-                        <a href="{:url('admin/Comment/comment_list')}">
-                            <div class="infobox-content">{$coms_count}</div>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="space-6"></div>
+                    <div class="pad-all text-sm">
+                        {:lang('Total number of comments')} <span class="text-semibold">{$coms_count}</span>
                     </div>
                 </div>
+            </div><!-- 评论统计结束 -->
+
+            <!-- Hook Totals -->
+            <div class="col-xs-12">
                 {:hook('sysinfo')}
                 {:hook('team')}
-
             </div>
-            <div class="vspace-12-sm"></div>
-            <div class="col-sm-5">
-                {:hook('maintain')}
+        </div><!-- /.row -->
+    </div><!-- /.col -->
+    <div class="col-sm-4">
+        <div class="row">
+            <div class="col-xs-12">
+                {:hook('system')}
+
                 <!-- 文章排行开始 -->
                 <!--<div class="widget-box widget-color-blue">
                     <div class="widget-header">
@@ -124,7 +131,7 @@
                 </div>-->
                 <!-- 文章排行结束 -->
             </div>
-        </div><!-- /.row -->
-    </div><!-- /.col -->
+        </div>
+    </div>
 </div><!-- /.row -->
 {/block}
