@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `yf_addon` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='插件表' AUTO_INCREMENT=18 ;
 
 INSERT INTO `yf_addon` (`id`, `name`, `title`, `icon`, `description`, `author`, `author_url`, `config`, `admin_actions`, `version`, `identifier`, `admin`, `create_time`, `update_time`, `sort`, `status`) VALUES
-(17, 'System', '日常维护', '', '后台首页日常维护', 'rainfer', '', '{"display":"1"}', '{"index":[],"config":[],"edit":[],"add":[]}', '0.1', '', 0, 1487424935, 1487425273, 15, 1),
+(17, 'Maintain', '日常维护', '', '后台首页日常维护', 'rainfer', '', '{"display":"1"}', '{"index":[],"config":[],"edit":[],"add":[]}', '0.1', '', 0, 1487424935, 1487425273, 15, 1),
 (15, 'Security', '安全检测', '', '网站安全检测', 'rainfer', '', '', '{"index":["Admin\\/security_list"],"config":[],"edit":[],"add":[]}', '0.1', '', 1, 1487422525, 1487425273, 40, 1),
 (13, 'Info', '后台信息', '', '后台首页信息显示', 'rainfer', '', '{"display":"1"}', '{"index":[],"config":["Admin\\/config"],"edit":[],"add":[]}', '0.1', '', 0, 1487419743, 1487425273, 100, 1),
 (16, 'Team', '团队&贡献者', '', '后台首页团队&贡献者显示', 'rainfer', '', '{"display":"1"}', NULL, '0.1', '', 0, 1487422724, 1487425273, 10, 1);
@@ -480,7 +480,7 @@ CREATE TABLE IF NOT EXISTS `yf_hook` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='钩子表' AUTO_INCREMENT=18 ;
 
 INSERT INTO `yf_hook` (`id`, `name`, `addon`, `description`, `system`, `create_time`, `update_time`, `status`) VALUES
-(17, 'system', 'System', '日常维护钩子', 0, 1487424935, 1487424935, 1),
+(17, 'maintain', 'Maintain', '日常维护钩子', 0, 1487424935, 1487424935, 1),
 (13, 'gitinfo', 'Info', '版本信息事件', 0, 1487419743, 1487419743, 1),
 (14, 'sysinfo', 'Info', '框架信息事件', 0, 1487419743, 1487419743, 1),
 (16, 'team', 'Team', '团队检测事件', 0, 1487422600, 1487422600, 1);
@@ -498,7 +498,7 @@ CREATE TABLE IF NOT EXISTS `yf_hook_addon` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='钩子-插件对应表' AUTO_INCREMENT=20 ;
 
 INSERT INTO `yf_hook_addon` (`id`, `hook`, `addon`, `create_time`, `update_time`, `sort`, `status`) VALUES
-(19, 'system', 'System', 1487424935, 1487424935, 100, 1),
+(19, 'system', 'Maintain', 1487424935, 1487424935, 100, 1),
 (14, 'sysinfo', 'Info', 1487419743, 1487419743, 100, 1),
 (13, 'gitinfo', 'Info', 1487419743, 1487419743, 100, 1),
 (17, 'team', 'Team', 1487422600, 1487422600, 100, 1),

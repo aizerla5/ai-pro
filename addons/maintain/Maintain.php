@@ -6,23 +6,23 @@
 // +----------------------------------------------------------------------
 // | Author: Ai Ye
 // +----------------------------------------------------------------------
-namespace addons\system;
+namespace addons\maintain;
 
 use think\Addons;
 
 /**
  * 显示日常维护
  */
-class System extends Addons
+class Maintain extends Addons
 {
     public $info = [
-        'name' => 'System',
+        'name' => 'Maintain',
         'title' => '系统检测及维护',
         'description' => '后台首页检测维护',
         'status' => 0,
         'author' => 'aizerla',
         'version' => '1.0',
-        'admin'=>'0'
+        'admin' => '0'
     ];
 
     /**
@@ -30,17 +30,18 @@ class System extends Addons
      */
     public $hooks = [
         // 钩子名称 => 钩子说明
-        'system'=>'检测维护事件'
+        'maintain' => '检测维护事件'
     ];
     /**
      * @var array 插件管理方法,格式:['控制器/操作方法',[参数数组]])
      */
     public $admin_actions = [
-        'index'=>[],//管理首页
-        'config'=>[],//设置页
+        'index' => [],//管理首页
+        'config' => [],//设置页
         'edit' => [],//编辑页
-        'add'=>[],//增加页
+        'add' => [],//增加页
     ];
+
     /**
      * 插件安装方法
      * @return bool
@@ -60,14 +61,13 @@ class System extends Addons
     }
 
     /**
-     * 实现的system钩子方法
+     * 实现的maintain钩子方法
      * @return mixed
      */
-    public function system()
+    public function maintain()
     {
-        $config=$this->getConfig();
-		if($config['display'])
-        {
+        $config = $this->getConfig();
+        if ($config['display']) {
             //安全检测
             $system_safe = true;
             //调试模式
@@ -75,7 +75,7 @@ class System extends Addons
             if ($danger_mode_debug) {
                 $system_safe = false;
             }
-            $this->assign('danger_mode_debug',$danger_mode_debug);
+            $this->assign('danger_mode_debug', $danger_mode_debug);
 
             //数据库密码
             $weak_setting_db_password = false;
@@ -93,20 +93,20 @@ class System extends Addons
             if ($weak_setting_db_password) {
                 $system_safe = false;
             }
-            $this->assign('weak_setting_db_password',$weak_setting_db_password);
+            $this->assign('weak_setting_db_password', $weak_setting_db_password);
 
             //密码修改时间
             $weak_setting_admin_last_change_password = (session('admin_auth.admin_last_change_pwd_time') < time() - 3600 * 24 * 30);
             if ($weak_setting_admin_last_change_password) {
                 $system_safe = false;
             }
-            $this->assign('weak_setting_admin_last_change_password',$weak_setting_admin_last_change_password);
+            $this->assign('weak_setting_admin_last_change_password', $weak_setting_admin_last_change_password);
 
             //整体安全性
-            $this->assign('system_safe',$system_safe);
+            $this->assign('system_safe', $system_safe);
 
             //页面调试
-            $this->assign('system_pageshow',config('app_trace'));
+            $this->assign('system_pageshow', config('app_trace'));
             //日志分析
             $log_size = 0;
             $log_file_cnt = 0;
@@ -120,9 +120,9 @@ class System extends Addons
                     }
                 }
             }
-            $this->assign('log_size',$log_size);
-            $this->assign('log_file_cnt',$log_file_cnt);
-            return $this->fetch('system');
+            $this->assign('log_size', $log_size);
+            $this->assign('log_file_cnt', $log_file_cnt);
+            return $this->fetch('maintain');
         }
     }
 }

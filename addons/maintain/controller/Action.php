@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: Ai Ye
 // +----------------------------------------------------------------------
-namespace addons\system\controller;
+namespace addons\maintain\controller;
 
 use app\admin\controller\Base;
 use think\Cache;
@@ -16,7 +16,7 @@ class Action extends Base
     /*
      * 日常维护
      */
-    public function system()
+    public function maintain()
     {
         $action=input('action');
         switch ($action) {
