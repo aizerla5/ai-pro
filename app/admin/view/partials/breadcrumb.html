@@ -1,5 +1,10 @@
 <!--Breadcrumb-->
 <ol class="breadcrumb">
     <li><a href="{:url('admin/index/index')}">{:lang('Home')}</a></li>
+    {if condition="!empty($breadcrumbs)"}
+    {volist name="breadcrumbs" id="vo"}
+    <li class="active">{$vo.title}</li>
+    {/volist}
+    {/if}
 </ol>
 <!--End breadcrumb-->

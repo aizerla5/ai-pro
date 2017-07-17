@@ -11,8 +11,10 @@
 
 return [
     'Backend' => '后台',
+    'Basic settings' => '基本设置',
     'Captcha' => '验证码',
     'Click to refresh' => '点击刷新',
+    'Contact information' => '联系方式',
     'Go to the software Download' => '进入软件下载专区',
     'For your better use of the system, it is recommended that the screen resolution above 1280*768, and install chrome Google browser' => '为了您更好的使用本系统，建议屏幕分辨率1280*768以上，并且安装chrome谷歌浏览器',
     'Invalid operation ...' => '操作无效',
@@ -23,6 +25,8 @@ return [
     'Password' => '密码',
     'Please use a normal form of submission' => '请使用正常的提交方式……',
     'Remember me' => '记住我',
+    'SEO Settings' => 'SEO 设置',
+    'Site Settings' => '站点设置',
     'Store Backend Manager System' => '商店后台管理系统',
     'Studio' => '工作室',
     'The captcha code is incorrect!' => '验证码不正确',
@@ -31,5 +35,6 @@ return [
     'Total number of comments' => '总评论数',
     'Total number of members' => '总会员数',
     'Username' => '用户名',
-    'User Login' => '用户登录'
+    'User Login' => '用户登录',
+    'Your current location' => '您当前的位置',
 ];

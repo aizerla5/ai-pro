@@ -16,6 +16,9 @@ class Base extends Common
     /** @var  array|null Backend User */
     protected $user;
 
+    /** @var array */
+    protected $breadcrumbs = [];
+
     public function _initialize()
     {
         parent::_initialize();
@@ -36,6 +39,50 @@ class Base extends Common
         $this->assign('menus_child', $menus_child);
         $this->assign('id_curr', $id_curr);
         $this->assign('avatar', session('backend_user.admin_avatar'));
+    }
+
+    protected function setPageTitle($title = '')
+    {
+        $this->assign('pageTitle', lang($title));
+    }
+
+    /**
+     * @param array $breadcrumb
+     */
+    protected function addBread($breadcrumb)
+    {
+        $this->breadcrumbs[] = $breadcrumb;
+    }
+
+    /**
+     * assign breacrumbs
+     */
+    protected function setBreadcrumbs()
+    {
+        if (count($this->breadcrumbs)) {
+            $this->assign('breadcrumbs', $this->breadcrumbs);
+        }
+    }
+
+    /**
+     * before fetch.
+     */
+    protected function beforeFetch()
+    {
+        $this->setBreadcrumbs();
+    }
+
+    /**
+     * @param string $template
+     * @param array $vars
+     * @param array $replace
+     * @param array $config
+     * @return mixed
+     */
+    public function fetch($template = '', $vars = [], $replace = [], $config = [])
+    {
+        $this->beforeFetch();
+        return parent::fetch($template, $vars, $replace, $config);
     }
 }
 

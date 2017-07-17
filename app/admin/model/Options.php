@@ -97,7 +97,7 @@ class Options extends Model
                         'email_rename' => '',
                         'email_name' => '',
                         'email_smtpname' => '',
-                        'smtpsecure' => '',
+                        'smtp_secure' => '',
                         'smtp_port' => '',
                         'email_emname' => '',
                         'email_pwd' => ''
@@ -118,6 +118,7 @@ class Options extends Model
                         'site_host' => '',
                         'site_tpl' => '',
                         'site_tpl_m' => '',
+                        'site_water' => '',
                         'site_logo' => '',
                         'site_icp' => '',
                         'site_tongji' => '',
@@ -137,7 +138,7 @@ class Options extends Model
                 $options = $options->toArray();
             }
             if (empty($options)) {
-                $options = self::where(array('option_name' => $type, 'option_l' => 'zh-cn'))->find()->toArray();
+                $options = self::where(array('option_name' => $type, 'option_l' => $lang))->find()->toArray();
                 $options['option_l'] = $lang;
                 unset($options['option_id']);
                 self::create($options);

@@ -11,18 +11,17 @@
             paths: {
                 'jquery': 'js/jquery-2.2.4.min',
                 'bootstrap': 'js/bootstrap.min',
-                'nifty': 'js/nifty',
                 'layer': 'js/layer/layer'
             },
             shim: {
                 'jquery': {
                     exports: 'jquery'
                 },
-                'nifty': {
-                    exports: "nifty"
-                },
                 'layer': {
                     exports: "layer"
+                },
+                'bootstrap': {
+                    deps: ['jquery']
                 }
             }
         };

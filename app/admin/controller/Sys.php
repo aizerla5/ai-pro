@@ -20,13 +20,14 @@ class Sys extends Base
      */
     public function sys()
     {
+        $this->setPageTitle('Your current location');
+        $this->addBread([
+            'title' => lang('Site Settings')
+        ]);
         //主题
-        $tpls = Options::themes();
-        $this->assign('templates', $tpls);
+        $templates = Options::themes();
+        $this->assign('templates', $templates);
         $sys = Options::get_options('site_options', $this->lang);
-        if (!isset($sys['site_water'])) {
-            $sys['site_water'] = '';
-        }
         $map = Options::map($this->lang);
         $this->assign('map_lat', $map['map_lat']);
         $this->assign('map_lng', $map['map_lng']);

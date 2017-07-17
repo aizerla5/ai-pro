@@ -7,6 +7,7 @@
 // +----------------------------------------------------------------------
 require([
     'jquery',
+    'bootstrap',
     'layer',
     'plugin/resize-end',
     'plugin/nano-scroll',
